@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import static Froggy_2.FrogCommands.jumpCommand;
+import static Froggy_2.FrogCommands.jumpLeftCommand;
+import static Froggy_2.FrogCommands.jumpRightCommand;
 
 public class MainFroggy {
     private static final List<FrogCommand> doneList = new ArrayList<FrogCommand>();
@@ -90,7 +91,9 @@ public class MainFroggy {
             default -> {
                 if (input.charAt(0) == '+' || input.charAt(0) == '-') {
                     try {
-                        doIt(jumpCommand(frog, Integer.parseInt(input)));
+                        if (input.charAt(0) == '+') {
+                            doIt(jumpRightCommand(frog, Integer.parseInt(input.substring(1))));
+                        }   else doIt(jumpLeftCommand(frog, Integer.parseInt(input.substring(1))));
                     } catch (Exception e) {
                         System.out.println("Введена некорректная команда");
                     }

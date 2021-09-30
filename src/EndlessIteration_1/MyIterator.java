@@ -1,10 +1,9 @@
 package EndlessIteration_1;
 
 import java.util.Iterator;
-import java.util.Random;
 
 public class MyIterator implements Iterator {
-    private Randoms randoms;
+    private final Randoms randoms;
 
     public MyIterator(Randoms randoms) {
         this.randoms = randoms;
@@ -12,11 +11,15 @@ public class MyIterator implements Iterator {
 
     @Override
     public boolean hasNext() {
-        return randoms.random != null;
+        boolean hasNext = randoms.random != null;
+        System.out.println("\tСледующий элемент " + ((hasNext) ? "" : "не ") + "найден");
+        return hasNext;
     }
 
     @Override
     public Object next() {
-        return randoms.getRandomInt();
+        int x = randoms.getRandomInt();
+        System.out.println("\tЧисло " + ((x % 2 == 0) ? "" : "не") + "чётное");
+        return x;
     }
 }
